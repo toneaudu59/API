@@ -70,8 +70,8 @@ public class MedicamentDAOTest {
         assertEquals("Noms différents", expResult.getNom(), result.getNom());
         assertEquals("Descriptions différentes", expResult.getDescription(), result.getDescription());
         assertEquals("Stocks différents", expResult.getStock(), result.getStock());
-        int id = result.getId();
-        obj = new Medicament(0, "NomTest", "DescTest", "StockTest");
+        //int id = result.getId();
+        //obj = new Medicament(0, "NomTest", "DescTest", "StockTest");
         instance.delete(result);
     }
 
@@ -133,7 +133,7 @@ public class MedicamentDAOTest {
         assertEquals("Noms différents", expResult.getNom(), result.getNom());
         assertEquals("Descriptions différentes", expResult.getDescription(), result.getDescription());
         assertEquals("Stocks différents", expResult.getStock(), result.getStock());
-        obj = new Medicament(0, "NomTest", "DescTest", "StockTest");
+       // obj = new Medicament(0, "NomTest", "DescTest", "StockTest");
         instance.delete(result);
     }
 
