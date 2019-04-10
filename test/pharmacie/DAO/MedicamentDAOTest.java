@@ -203,24 +203,30 @@ public class MedicamentDAOTest {
         medd.setConnection(dbConnect);
         med=medd.create(med);
         Prescription pr1=new Prescription(0,LocalDate.now(),med.getId(),pat.getId());
-        Prescription pr2=new Prescription(0,LocalDate.now(),med.getId(),pat.getId());
         PrescriptionDAO prd= new PrescriptionDAO();
         prd.setConnection(dbConnect);
         pr1=prd.create(pr1);
-        pr2=prd.create(pr2);
         Info inf1=new Info(0,10,"UniteTest",obj1.getId(),pr1.getId());
-        Info inf2=new Info(0,20,"UniteTest2",obj2.getId(),pr2.getId());
+        Info inf2=new Info(0,20,"UniteTest2",obj2.getId(),pr1.getId());
         InfoDAO infd=new InfoDAO();
         infd.setConnection(dbConnect);
         inf1=infd.create(inf1);
         inf2=infd.create(inf2);
         List<Vue_somme_medicament_prescrit> result = instance.rech(descrech);
-        if(result.indexOf(obj1)<0) fail("record introuvable "+obj1);
-        if(result.indexOf(obj2)<0) fail("record introuvable"+obj2);
+        boolean ok1=false,ok2=false;
+        for(int i=0;i<result.size();i++){
+            if(obj1.getNom().equalsIgnoreCase(result.get(i).getNom()) && obj1.getId()==result.get(i).getId() && obj1.getDescription().equalsIgnoreCase(result.get(i).getDescription())){
+                        ok1=true;
+            }
+            if(obj2.getNom().equalsIgnoreCase(result.get(i).getNom()) && obj2.getId()==result.get(i).getId() && obj2.getDescription().equalsIgnoreCase(result.get(i).getDescription())){
+                        ok2=true;
+            }
+        }
+        if(!ok1) fail("record introuvable"+obj1);
+        if(!ok2) fail("record introuvable"+obj2);
         infd.delete(inf1);
         infd.delete(inf2);
         prd.delete(pr1);
-        prd.delete(pr2);
         medd.delete(med);
         patd.delete(pat);
         instance.delete(obj1);

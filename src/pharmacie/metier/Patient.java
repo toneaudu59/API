@@ -1,4 +1,7 @@
 package pharmacie.metier;
+
+import java.util.Objects;
+
 /**
  * classe métier de gestion d'un patient
  *
@@ -116,6 +119,39 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient n°"+id+" :" +"\n"+nom+" "+prenom+"\nTéléphone :"+tel;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Patient other = (Patient) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.tel, other.tel)) {
+            return false;
+        }
+        return true;
     }
     
 }

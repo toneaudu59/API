@@ -186,7 +186,7 @@ public class PatientDAOTest {
         try{
             instance.delete(obj);
             System.out.println(obj);
-            fail("exception de record de parent clé étrangère");
+            fail("exception de record de parent clé étrangère non détecté");
         }catch(Exception e){}
         infd.delete(inf);
         prd.delete(pr);

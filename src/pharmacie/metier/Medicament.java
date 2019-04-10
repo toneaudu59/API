@@ -1,4 +1,7 @@
 package pharmacie.metier;
+
+import java.util.Objects;
+
 /**
  * classe métier de gestion d'un medicament
  *
@@ -117,6 +120,39 @@ public class Medicament {
     public String toString() {
       //  return "Medicament{" + "id=" + id + ", nom=" + nom + ", description=" + description + ", stock=" + stock + '}';
         return "Médicament n°"+id+":"+"\n"+nom+" "+description;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Medicament other = (Medicament) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.stock, other.stock)) {
+            return false;
+        }
+        return true;
     }
     
 }
