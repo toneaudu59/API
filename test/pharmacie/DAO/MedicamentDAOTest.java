@@ -65,7 +65,7 @@ public class MedicamentDAOTest {
         Medicament obj = new Medicament(0, "NomTest", "DescTest", "StockTest");
         MedicamentDAO instance = new MedicamentDAO();
         instance.setConnection(dbConnect);
-        Medicament expResult = new Medicament(0, "NomTest", "DescTest", "StockTest");
+        Medicament expResult = obj;
         Medicament result = instance.create(obj);
         assertEquals("Noms différents", expResult.getNom(), result.getNom());
         assertEquals("Descriptions différentes", expResult.getDescription(), result.getDescription());
